@@ -1007,6 +1007,38 @@ export interface ApiHeroStringHeroString extends Schema.CollectionType {
   };
 }
 
+export interface ApiPartnerDetailPartnerDetail extends Schema.CollectionType {
+  collectionName: 'partner_details';
+  info: {
+    singularName: 'partner-detail';
+    pluralName: 'partner-details';
+    displayName: 'partnerDetail';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    desciption: Attribute.Text;
+    logo: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::partner-detail.partner-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::partner-detail.partner-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1031,6 +1063,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
       'api::hero-string.hero-string': ApiHeroStringHeroString;
+      'api::partner-detail.partner-detail': ApiPartnerDetailPartnerDetail;
     }
   }
 }
