@@ -979,6 +979,7 @@ export interface ApiHeroStringHeroString extends Schema.CollectionType {
     singularName: 'hero-string';
     pluralName: 'hero-strings';
     displayName: 'heroString';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -986,6 +987,8 @@ export interface ApiHeroStringHeroString extends Schema.CollectionType {
   attributes: {
     topLine: Attribute.String;
     secondLine: Attribute.String;
+    thirdLine: Attribute.String;
+    heroArtwork: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "hero-string",
     "pluralName": "hero-strings",
-    "displayName": "heroString"
+    "displayName": "heroString",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,19 @@
     },
     "secondLine": {
       "type": "string"
+    },
+    "thirdLine": {
+      "type": "string"
+    },
+    "heroArtwork": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
