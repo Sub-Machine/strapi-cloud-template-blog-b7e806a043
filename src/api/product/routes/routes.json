@@ -1,0 +1,13 @@
+{
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/products/fetch",
+        "handler": "product.fetchProducts",
+        "config": {
+          "policies": []
+        }
+      }
+    ]
+  }
+  
