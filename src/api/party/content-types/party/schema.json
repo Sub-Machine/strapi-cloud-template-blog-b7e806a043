@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "products",
+  "collectionName": "parties",
   "info": {
-    "singularName": "product",
-    "pluralName": "products",
-    "displayName": "Product",
-    "description": ""
+    "singularName": "party",
+    "pluralName": "parties",
+    "displayName": "Party"
   },
   "options": {
     "draftAndPublish": true
@@ -22,18 +21,17 @@
       "type": "string"
     },
     "description": {
-      "type": "blocks"
+      "type": "richtext"
     },
     "image": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

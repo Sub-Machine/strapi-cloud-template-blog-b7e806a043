@@ -3,7 +3,7 @@
 module.exports = {
   async fetchProducts(ctx) {
     try {
-      await strapi.services.product.fetchAndSaveProducts();
+      await strapi.service('api::product.product').fetchAndSaveProducts();
       ctx.send({ message: 'Products fetched successfully!' });
     } catch (error) {
       ctx.send('An error occurred while fetching products.', { error });
@@ -57,7 +57,7 @@ module.exports = {
       if (!ctx.request.body) {
         return ctx.throw(400, 'Please provide product data');
       }
-      
+
       const existingProduct = await strapi.entityService.findOne('api::product.product', id);
       if (!existingProduct) {
         return ctx.throw(404, 'Product not found');
