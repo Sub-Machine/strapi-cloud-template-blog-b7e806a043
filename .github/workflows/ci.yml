@@ -39,6 +39,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: List installed packages
+        run: npm list
+
       - name: Create environment file
         run: |
           echo "DATABASE_CLIENT=postgres" >> .env
@@ -49,8 +52,11 @@ jobs:
           echo "DATABASE_PASSWORD=strapi" >> .env
           echo "HOST=0.0.0.0" >> .env
           echo "PORT=1337" >> .env
-          echo "ADMIN_JWT_SECRET=\${{ secrets.ADMIN_JWT_SECRET }}" >> .env
-          echo "JWT_SECRET=\${{ secrets.JWT_SECRET }}" >> .env
+          echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> .env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+
+      - name: Debug: Print .env file
+        run: cat .env
 
       - name: Build Strapi
         run: npm run build
