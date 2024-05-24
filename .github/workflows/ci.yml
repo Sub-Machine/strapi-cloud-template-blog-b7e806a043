@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_DB: strapi
+          POSTGRES_USER: strapi
+          POSTGRES_PASSWORD: strapi
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create environment file
+        run: |
+          echo "DATABASE_CLIENT=postgres" >> .env
+          echo "DATABASE_HOST=localhost" >> .env
+          echo "DATABASE_PORT=5432" >> .env
+          echo "DATABASE_NAME=strapi" >> .env
+          echo "DATABASE_USERNAME=strapi" >> .env
+          echo "DATABASE_PASSWORD=strapi" >> .env
+          echo "HOST=0.0.0.0" >> .env
+          echo "PORT=1337" >> .env
+          echo "ADMIN_JWT_SECRET=\${{ secrets.ADMIN_JWT_SECRET }}" >> .env
+          echo "JWT_SECRET=\${{ secrets.JWT_SECRET }}" >> .env
+
+      - name: Build Strapi
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
