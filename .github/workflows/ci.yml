@@ -55,7 +55,7 @@ jobs:
           echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> .env
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
 
-      - name: Debug: Print .env file
+      - name: Debug - Print .env file
         run: cat .env
 
       - name: Build Strapi
