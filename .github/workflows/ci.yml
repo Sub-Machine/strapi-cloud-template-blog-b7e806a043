@@ -16,21 +16,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Clear npm cache
-        run: npm cache clean --force
-
-      - name: Use Node.js 14
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: '18'  # Ensuring compatibility with your "engines" specification
+
+      - name: Clear npm cache
+        run: npm cache clean --force
 
       - name: Install dependencies
         run: npm install
 
-      - name: List installed packages
-        run: npm list --depth=0
+      - name: Check installed ajv version
+        run: npm list ajv
 
-      - name: Set up environment variables
+      - name: Check installed ajv-keywords version
+        run: npm list ajv-keywords
+
+      - name: Create environment file
         run: |
           echo "HOST=localhost" >> .env
           echo "PORT=1337" >> .env
@@ -43,20 +46,18 @@ jobs:
           echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> .env
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
 
-      - name: Debug - Print .env file
-        run: cat .env
-
-      - name: Debug - Print environment variables
-        run: env
-
-      - name: Debug - Print npm version
-        run: npm --version
-
-      - name: Debug - Print Node.js version
-        run: node --version
-
       - name: Build Strapi
         run: npm run build
 
       - name: Run tests
         run: npm test
+
+      - name: Debug - Print npm environment details
+        if: failure()  # This step will run only if the previous steps fail
+        run: |
+          echo "NPM Version:"
+          npm --version
+          echo "Node Version:"
+          node --version
+          echo "List installed packages:"
+          npm list --depth=0
