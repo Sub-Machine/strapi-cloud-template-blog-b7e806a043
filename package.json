@@ -1,11 +1,12 @@
 {
   "dependencies": {
+    "@babel/core": "^7.24.6",
     "@strapi/plugin-cloud": "4.20.2",
     "@strapi/plugin-graphql": "^4.0.5",
     "@strapi/plugin-i18n": "4.20.2",
     "@strapi/plugin-users-permissions": "4.20.2",
     "@strapi/strapi": "4.20.2",
-    "ajv": "^8.13.0",
+    "ajv": "^6.12.6",
     "axios": "^1.6.8",
     "better-sqlite3": "8.6.0",
     "form-data": "^4.0.0",
