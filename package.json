@@ -7,7 +7,7 @@
     "@strapi/plugin-users-permissions": "4.20.2",
     "@strapi/strapi": "4.20.2",
     "ajv": "^6.12.6",
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "better-sqlite3": "8.6.0",
     "form-data": "^4.0.0",
     "fs": "^0.0.1-security",

@@ -1073,6 +1073,40 @@ export interface ApiPartyParty extends Schema.CollectionType {
   };
 }
 
+export interface ApiProductProduct extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'Product';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    price: Attribute.Decimal;
+    description: Attribute.RichText;
+    image: Attribute.Media;
+    category: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1099,6 +1133,7 @@ declare module '@strapi/types' {
       'api::hero-string.hero-string': ApiHeroStringHeroString;
       'api::partner-detail.partner-detail': ApiPartnerDetailPartnerDetail;
       'api::party.party': ApiPartyParty;
+      'api::product.product': ApiProductProduct;
     }
   }
 }
