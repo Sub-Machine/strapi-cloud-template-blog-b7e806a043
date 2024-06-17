@@ -883,6 +883,39 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
 }
 
+export interface ApiSubBoxSubBox extends Schema.CollectionType {
+  collectionName: 'sub_boxes';
+  info: {
+    singularName: 'sub-box';
+    pluralName: 'sub-boxes';
+    displayName: 'sub-box';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    price: Attribute.Decimal;
+    imageUrl: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sub-box.sub-box',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sub-box.sub-box',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -904,6 +937,7 @@ declare module '@strapi/types' {
       'api::about.about': ApiAboutAbout;
       'api::global.global': ApiGlobalGlobal;
       'api::product.product': ApiProductProduct;
+      'api::sub-box.sub-box': ApiSubBoxSubBox;
     }
   }
 }

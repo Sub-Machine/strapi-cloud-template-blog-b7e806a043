@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sub_boxes",
+  "info": {
+    "singularName": "sub-box",
+    "pluralName": "sub-boxes",
+    "displayName": "sub-box"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "imageUrl": {
+      "type": "string"
+    }
+  }
+}
